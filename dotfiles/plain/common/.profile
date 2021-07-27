@@ -26,3 +26,16 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+#####
+## Autorun for the gpg-relay bridge
+##
+SOCAT_PID_FILE=$HOME/.misc/socat-gpg.pid
+
+if [[ -f $SOCAT_PID_FILE ]] && kill -0 $(cat $SOCAT_PID_FILE); then
+   : # already running
+else
+    rm -f "$HOME/.gnupg/S.gpg-agent"
+    (trap "rm $SOCAT_PID_FILE" EXIT; socat UNIX-LISTEN:"$HOME/.gnupg/S.gpg-agent,fork" EXEC:'/mnt/c/PATH_TO_NPIPERELAY/npiperelay.exe -ei -ep -s -a "C:/Users/WINDOWS_USERNAME/AppData/Roaming/gnupg/S.gpg-agent"',nofork </dev/null &>/dev/null) &
+    echo $! >$SOCAT_PID_FILE
+fi
