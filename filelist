@@ -1,1 +1,6 @@
 .bashrc
+.gitconfig
+.profile
+.viminfo
+.bash_completion
+.config/topgrade.toml
