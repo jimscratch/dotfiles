@@ -5,9 +5,8 @@
 .bash_completion
 .config/topgrade.toml
 .config/gh/config.yml
-.config/hosts.yml
+.config/gh/hosts.yml
 .docker/config.json
-.docker/contexts
 .docker/features.json
 .kube/config
 .local/state/gh/state.yml
