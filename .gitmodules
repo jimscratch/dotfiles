@@ -1,0 +1,3 @@
+[submodule "dotgit"]
+	path = dotgit
+	url = https://github.com/kobus-v-schoor/dotgit
